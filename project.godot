@@ -17,7 +17,25 @@ _global_script_class_icons={
 
 config/name="Junk from Outer Space 2"
 config/icon="res://icon.png"
+boot_splash/size/fullscreen=true
+
+[display]
+
+window/size/width=1600
+window/size/height=900
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "smoothing" )
+
+[physics]
+
+3d/default_gravity_vector=Vector3( 0, 0, 0 )
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://shaders/default_env.tres"
