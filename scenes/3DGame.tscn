@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scripts/test2.gd" type="Script" id=4]
+[ext_resource path="res://sounds/music/title.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scripts/fps.gd" type="Script" id=2]
+[ext_resource path="res://scripts/asteroid_remover.gd" type="Script" id=3]
+[ext_resource path="res://scripts/asteroid_spawner.gd" type="Script" id=4]
 [ext_resource path="res://scripts/test.gd" type="Script" id=6]
 [ext_resource path="res://scenes/instances/asteroid0.tscn" type="PackedScene" id=7]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 1, 1, 10 )
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 4 )
@@ -13,8 +19,32 @@ projection = 1
 size = 60.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.250811, -0.46645, 0.848244, -0.0216948, 0.873324, 0.486656, -0.967793, -0.140461, 0.20892, 48.3858, 14.0833, -0.00863552 )
+transform = Transform( 0.320769, -0.454956, 0.830736, -0.0216948, 0.873324, 0.486656, -0.946909, -0.174127, 0.270265, 18.6813, 14.0833, -0.00863552 )
+light_energy = 0.8
 shadow_enabled = true
+directional_shadow_blend_splits = true
 
 [node name="Asteroid" parent="." instance=ExtResource( 7 )]
 script = ExtResource( 6 )
+
+[node name="Area" type="Area" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPSCounter" type="Label" parent="CanvasLayer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 85.0
+margin_bottom = 17.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

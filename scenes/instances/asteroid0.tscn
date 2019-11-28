@@ -14,7 +14,7 @@ normal_enabled = true
 normal_scale = 1.0
 normal_texture = ExtResource( 4 )
 
-[node name="Asteroid" type="Spatial"]
+[node name="Asteroid0" type="Spatial"]
 
 [node name="RigidBody" type="RigidBody" parent="."]
 axis_lock_linear_z = true
@@ -26,6 +26,6 @@ shape = SubResource( 1 )
 script = ExtResource( 1 )
 target = NodePath("../RigidBody")
 
-[node name="Mesh" type="MeshInstance" parent="Smoothing"]
+[node name="MeshInstance" type="MeshInstance" parent="Smoothing"]
 mesh = ExtResource( 2 )
 material/0 = SubResource( 2 )

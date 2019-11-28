@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/white.png-7629ecee470266ac006ffe7738353349.s3tc.stex"
-path.etc2="res://.import/white.png-7629ecee470266ac006ffe7738353349.etc2.stex"
+path.s3tc="res://.import/asteroid1_n.png-24553cc109cc4df4872859abd558366e.s3tc.stex"
+path.etc2="res://.import/asteroid1_n.png-24553cc109cc4df4872859abd558366e.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/white.png"
-dest_files=[ "res://.import/white.png-7629ecee470266ac006ffe7738353349.s3tc.stex", "res://.import/white.png-7629ecee470266ac006ffe7738353349.etc2.stex" ]
+source_file="res://textures/asteroid1_n.png"
+dest_files=[ "res://.import/asteroid1_n.png-24553cc109cc4df4872859abd558366e.s3tc.stex", "res://.import/asteroid1_n.png-24553cc109cc4df4872859abd558366e.etc2.stex" ]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=0
+compress/normal_map=1
 flags/repeat=true
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false

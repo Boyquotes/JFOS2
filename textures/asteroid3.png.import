@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/white.png-7629ecee470266ac006ffe7738353349.s3tc.stex"
-path.etc2="res://.import/white.png-7629ecee470266ac006ffe7738353349.etc2.stex"
+path.s3tc="res://.import/asteroid3.png-840e2abf21ae316d513b152b432b6ef0.s3tc.stex"
+path.etc2="res://.import/asteroid3.png-840e2abf21ae316d513b152b432b6ef0.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/white.png"
-dest_files=[ "res://.import/white.png-7629ecee470266ac006ffe7738353349.s3tc.stex", "res://.import/white.png-7629ecee470266ac006ffe7738353349.etc2.stex" ]
+source_file="res://textures/asteroid3.png"
+dest_files=[ "res://.import/asteroid3.png-840e2abf21ae316d513b152b432b6ef0.s3tc.stex", "res://.import/asteroid3.png-840e2abf21ae316d513b152b432b6ef0.etc2.stex" ]
 
 [params]
 
