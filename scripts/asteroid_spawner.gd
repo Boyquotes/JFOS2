@@ -13,11 +13,14 @@ func _ready():
 	var timer = get_tree().create_timer(1, false)
 	timer.connect("timeout", self, "spawn_asteroid")
 
-#func _process(delta):
-#	pass
+func _process(delta):
+	var proj_size = Common.get_projection_size()
+	get_node("TestBG").scale.x = proj_size.x / 2
+	get_node("TestBG").scale.z = proj_size.y / 2
+	pass
 
 func spawn_asteroid():
-	var proj_size = Common.get_projection_size(get_node("Camera"))
+	var proj_size = Common.get_projection_size()
 	
 	var pos = Vector3(rng.randf_range(-proj_size.x, proj_size.x), rng.randf_range(-proj_size.y, proj_size.y), 0)
 	if pos.x < 0:
@@ -34,13 +37,13 @@ func spawn_asteroid():
 	var obj = asteroids[rng.randi_range(3, asteroids.size() - 1)].instance()
 	obj.translation = pos
 	
-	var scalar = rng.randf_range(0.2, 2)
+	var scalar = rng.randf_range(0.1, 1)
 	obj.scale = Vector3(scalar, scalar, scalar)
 	
 	var body = obj.get_node("RigidBody")
 	body.linear_velocity = dir * rng.randf_range(5, 50)
 	body.angular_velocity = Vector3(rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5))
-	body.mass *= (4 / 3) * PI * pow(scalar / 2, 3)
+	body.mass = (4 / 3) * PI * pow(scalar / 2, 3) * 30
 	
 	add_child(obj)
 	
