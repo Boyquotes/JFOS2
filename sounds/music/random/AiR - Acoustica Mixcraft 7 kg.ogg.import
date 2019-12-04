@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AiR - Acoustica Mixcraft 7 kg.ogg-7757ab74f66b17e881297518b2bf5a28.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/AiR - Acoustica Mixcraft 7 kg.ogg"
+dest_files=[ "res://.import/AiR - Acoustica Mixcraft 7 kg.ogg-7757ab74f66b17e881297518b2bf5a28.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

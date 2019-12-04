@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/JUNLAJUBALAM - Picture to Icon 3.x crk.ogg-707954bc798e4059c829bd5e5139b42d.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/JUNLAJUBALAM - Picture to Icon 3.x crk.ogg"
+dest_files=[ "res://.import/JUNLAJUBALAM - Picture to Icon 3.x crk.ogg-707954bc798e4059c829bd5e5139b42d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

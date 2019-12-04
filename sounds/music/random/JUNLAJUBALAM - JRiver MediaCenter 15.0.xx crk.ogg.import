@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/JUNLAJUBALAM - JRiver MediaCenter 15.0.xx crk.ogg-7acc27cd4cf21516a8c57faacab97299.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/JUNLAJUBALAM - JRiver MediaCenter 15.0.xx crk.ogg"
+dest_files=[ "res://.import/JUNLAJUBALAM - JRiver MediaCenter 15.0.xx crk.ogg-7acc27cd4cf21516a8c57faacab97299.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

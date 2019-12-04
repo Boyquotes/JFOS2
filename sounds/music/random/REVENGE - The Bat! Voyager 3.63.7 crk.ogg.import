@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/REVENGE - The Bat! Voyager 3.63.7 crk.ogg-fb1caa60d3aa499c200d0b32d89f965f.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/REVENGE - The Bat! Voyager 3.63.7 crk.ogg"
+dest_files=[ "res://.import/REVENGE - The Bat! Voyager 3.63.7 crk.ogg-fb1caa60d3aa499c200d0b32d89f965f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

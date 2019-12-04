@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tPORt - GIF Movie Gear 4.X.X kg.ogg-9f4c1b2b8d378eadc3cb0578e1c635e2.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/tPORt - GIF Movie Gear 4.X.X kg.ogg"
+dest_files=[ "res://.import/tPORt - GIF Movie Gear 4.X.X kg.ogg-9f4c1b2b8d378eadc3cb0578e1c635e2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

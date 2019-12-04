@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/AT4RE - Limewire Turbo Accelerator 4.2.7 crk.ogg-53e5a5a11f80587bd99d6d2d57ce5cfe.oggstr"
+
+[deps]
+
+source_file="res://sounds/music/random/AT4RE - Limewire Turbo Accelerator 4.2.7 crk.ogg"
+dest_files=[ "res://.import/AT4RE - Limewire Turbo Accelerator 4.2.7 crk.ogg-53e5a5a11f80587bd99d6d2d57ce5cfe.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://default_theme.tres" type="Theme" id=1]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Control
+
+func _unhandled_input(event):
+	if event.is_action_pressed(\"toggle_pause\"):
+		get_node(\"/root/Main\").toggle_pause()
+"
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends Button
+
+func _pressed():
+	get_node(\"/root/Main\").set_paused(false)
+"
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Button
+
+func _pressed():
+	get_node(\"/root/Main\").stop_game()
+"
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/batmfa_.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+outline_size = 2
+font_data = SubResource( 1 )
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -54.5
+margin_top = 145.0
+margin_right = 54.5
+margin_bottom = 175.0
+text = "Resume"
+script = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -78.0
+margin_top = 180.0
+margin_right = 78.0
+margin_bottom = 210.0
+text = "Return to Title"
+script = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -123.5
+margin_top = 31.0
+margin_right = 123.5
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.54902, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.286275, 0, 0, 1 )
+text = "Paused"
+align = 1
