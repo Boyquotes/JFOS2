@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/instances/spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/music.gd" type="Script" id=2]
@@ -27,6 +27,19 @@ extents = Vector3( 50, 10, 10 )
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 50, 10, 10 )
 
+[sub_resource type="GDScript" id=9]
+script/source = "extends StaticBody
+
+func _physics_process(delta):
+	var proj_size = Common.get_projection_size()
+	var shape = get_node(\"CollisionShape\").shape
+	shape.extents.x = proj_size.x / 2
+	shape.extents.y = proj_size.y / 2
+"
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 1, 1, 10 )
+
 [node name="Game" type="Spatial"]
 pause_mode = 1
 script = ExtResource( 4 )
@@ -45,6 +58,8 @@ directional_shadow_blend_splits = true
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
 
 [node name="Area" type="Area" parent="."]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
@@ -80,3 +95,11 @@ shape = SubResource( 6 )
 [node name="BottomBox" type="CollisionShape" parent="StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0 )
 shape = SubResource( 7 )
+
+[node name="RaycastBody" type="StaticBody" parent="."]
+collision_layer = 8
+collision_mask = 8
+script = SubResource( 9 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RaycastBody"]
+shape = SubResource( 8 )

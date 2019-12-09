@@ -33,4 +33,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DebugLabel" type="Label" parent="CanvasLayer"]
+margin_left = 82.5809
+margin_top = 186.128
+margin_right = 352.581
+margin_bottom = 337.128
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Title" parent="." instance=ExtResource( 2 )]

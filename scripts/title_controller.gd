@@ -5,7 +5,13 @@ var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
-	spawn_asteroid()
+	
+	var timer = Timer.new()
+	timer.process_mode = Timer.TIMER_PROCESS_PHYSICS
+	timer.wait_time = 0.8
+	timer.autostart = true
+	timer.connect("timeout", self, "spawn_asteroid")
+	add_child(timer)
 
 func spawn_asteroid():
 	var proj_size = Common.get_projection_size()
@@ -28,7 +34,5 @@ func spawn_asteroid():
 	var angular_velocity = Vector3(rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5))
 	var scalar = rng.randf_range(0.1, 1)
 	
-	Asteroids.spawn(self, rng, pos, linear_velocity, angular_velocity, scalar)
-	
-	var timer = get_tree().create_timer(0.8, true)
-	timer.connect("timeout", self, "spawn_asteroid")
+	var asteroid = Asteroids.create(rng, pos, linear_velocity, angular_velocity, scalar)
+	add_child(asteroid)

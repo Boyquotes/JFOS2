@@ -1,6 +1,6 @@
 extends Object
 
-var list = [
+const list = [
 	preload("res://scenes/instances/asteroid0.tscn"),
 	preload("res://scenes/instances/asteroid1.tscn"),
 	preload("res://scenes/instances/asteroid2.tscn"),
@@ -8,7 +8,7 @@ var list = [
 	preload("res://scenes/instances/asteroid4.tscn")
 ]
 
-func spawn(node: Spatial, rng: RandomNumberGenerator, pos: Vector3, linear_velocity: Vector3, angular_velocity: Vector3, scale: float):
+func create(rng: RandomNumberGenerator, pos: Vector3, linear_velocity: Vector3, angular_velocity: Vector3, scale: float) -> Spatial:
 	var obj = list[rng.randi_range(0, list.size() - 1)].instance()
 	obj.translation = pos
 	obj.scale = Vector3(scale, scale, scale)
@@ -18,4 +18,4 @@ func spawn(node: Spatial, rng: RandomNumberGenerator, pos: Vector3, linear_veloc
 	body.angular_velocity = angular_velocity
 	body.mass *= (4 / 3) * PI * pow(scale / 2, 3) * 30
 	
-	node.add_child(obj)
+	return obj
