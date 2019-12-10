@@ -15,12 +15,6 @@ func _ready():
 	timer.connect("timeout", self, "spawn_asteroid")
 	add_child(timer)
 
-func _process(delta):
-	var proj_size = Common.get_projection_size()
-	get_node("TestBG").scale.x = proj_size.x / 2
-	get_node("TestBG").scale.z = proj_size.y / 2
-	pass
-
 func spawn_asteroid():
 	var proj_size = Common.get_projection_size()
 	var mid_factor = 0.75

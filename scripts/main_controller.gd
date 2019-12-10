@@ -8,8 +8,9 @@ func _input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 		
 		# Workaround for wrong mouse bounds
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+		if is_game_active() && !get_tree().paused:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 func resize():
 	var min_size = Vector2(640, 480)

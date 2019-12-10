@@ -1,11 +1,30 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sounds/music/title.ogg" type="AudioStream" id=1]
 [ext_resource path="res://scripts/asteroid_remover.gd" type="Script" id=2]
 [ext_resource path="res://scripts/title_controller.gd" type="Script" id=3]
+[ext_resource path="res://shaders/space_background.tres" type="Shader" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 1, 10 )
+
+[sub_resource type="PlaneMesh" id=2]
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 4 )
+shader_param/BaseColor = null
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends MeshInstance
+
+func _process(delta):
+	var proj_size = Common.get_projection_size()
+	scale.x = proj_size.x / 2
+	scale.z = proj_size.y / 2
+	
+	var color = Color.from_hsv(fmod(OS.get_ticks_msec() / 100000.0, 1.0), 1, 0.15)
+	get_surface_material(0).set_shader_param(\"BaseColor\", color)
+"
 
 [node name="Title" type="Spatial"]
 script = ExtResource( 3 )
@@ -26,6 +45,12 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 1 )
+
+[node name="Background" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+script = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )

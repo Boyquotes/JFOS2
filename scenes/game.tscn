@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/instances/spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/music.gd" type="Script" id=2]
 [ext_resource path="res://scripts/asteroid_remover.gd" type="Script" id=3]
 [ext_resource path="res://scripts/game_controller.gd" type="Script" id=4]
+[ext_resource path="res://shaders/space_background.tres" type="Shader" id=5]
 [ext_resource path="res://scripts/play_area_box.gd" type="Script" id=6]
 
 [sub_resource type="BoxShape" id=1]
@@ -11,9 +12,18 @@ extents = Vector3( 1, 1, 10 )
 
 [sub_resource type="PlaneMesh" id=2]
 
-[sub_resource type="SpatialMaterial" id=3]
-flags_unshaded = true
-albedo_color = Color( 0.243137, 0.243137, 0.243137, 1 )
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 5 )
+shader_param/BaseColor = Color( 0, 0.113281, 0.00263445, 1 )
+
+[sub_resource type="GDScript" id=10]
+script/source = "extends MeshInstance
+
+func _process(delta):
+	var proj_size = Common.get_projection_size()
+	scale.x = proj_size.x / 2
+	scale.z = proj_size.y / 2
+"
 
 [sub_resource type="BoxShape" id=4]
 extents = Vector3( 10, 50, 10 )
@@ -69,11 +79,12 @@ shape = SubResource( 1 )
 bus = "Music"
 script = ExtResource( 2 )
 
-[node name="TestBG" type="MeshInstance" parent="."]
+[node name="Background" type="MeshInstance" parent="."]
+pause_mode = 2
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -20 )
-visible = false
 mesh = SubResource( 2 )
-material/0 = SubResource( 3 )
+material/0 = SubResource( 11 )
+script = SubResource( 10 )
 
 [node name="StaticBody" type="StaticBody" parent="."]
 collision_layer = 2
