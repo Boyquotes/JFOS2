@@ -18,7 +18,7 @@ func _physics_process(delta):
 				var pos_offset = Vector3(cos(angle), sin(angle), 0) * 3 * scalar
 				var vel_offset = pos_offset.normalized() * rng.randf_range(1, 5)
 				var ang_vel = Vector3(rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5))
-				var new_scalar = scalar / rng.randf_range(2, 2.5)
+				var new_scalar = (scalar / rng.randf_range(2, 3)) * (4.0 / split_count)
 				
 				var asteroid = Asteroids.create(rng, global_transform.origin + pos_offset, linear_velocity + vel_offset, ang_vel, new_scalar)
 				get_parent().get_parent().add_child(asteroid)

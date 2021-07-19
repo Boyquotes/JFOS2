@@ -1,7 +1,7 @@
 extends Area
 
 func _ready():
-	connect("body_exited", self, "remove_asteroid")
+	connect("body_exited", self, "remove_object")
 
 func _physics_process(delta):
 	var proj_size = Common.get_projection_size()
@@ -9,6 +9,6 @@ func _physics_process(delta):
 	shape.extents.x = max(proj_size.x, proj_size.y)
 	shape.extents.y = max(proj_size.x, proj_size.y)
 
-func remove_asteroid(body):
+func remove_object(body):
 	if !body.is_in_group("unremoveable"):
 		body.get_parent().queue_free()

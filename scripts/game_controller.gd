@@ -22,7 +22,7 @@ func spawn_asteroid():
 	
 	var ray_pos = Vector3(cos(spawn_angle), sin(spawn_angle), 0) * max(proj_size.x, proj_size.y)
 	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(ray_pos, Vector3(0, 0, 0), [], 0x8)
+	var result = space_state.intersect_ray(ray_pos, Vector3(0, 0, 0), [], 0x8, false, true)
 	
 	if result.empty():
 		print("Empty raytrace result!")
@@ -35,7 +35,7 @@ func spawn_asteroid():
 	
 	var linear_velocity = dir * rng.randf_range(5, 20)
 	var angular_velocity = Vector3(rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5), rng.randf_range(-2.5, 2.5))
-	var scalar = rng.randf_range(0.2, 1.5)
+	var scalar = clamp(pow(2, rng.randfn(0, 0.5)) * 0.6, 0.1, 3.0)
 	
 	var asteroid = Asteroids.create(rng, pos, linear_velocity, angular_velocity, scalar)
 	add_child(asteroid)

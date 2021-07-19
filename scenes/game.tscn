@@ -2,21 +2,20 @@
 
 [ext_resource path="res://scenes/instances/spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/music.gd" type="Script" id=2]
-[ext_resource path="res://scripts/asteroid_remover.gd" type="Script" id=3]
+[ext_resource path="res://scripts/object_remover.gd" type="Script" id=3]
 [ext_resource path="res://scripts/game_controller.gd" type="Script" id=4]
 [ext_resource path="res://shaders/space_background.tres" type="Shader" id=5]
-[ext_resource path="res://scripts/play_area_box.gd" type="Script" id=6]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 1, 10 )
 
 [sub_resource type="PlaneMesh" id=2]
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
 shader_param/BaseColor = Color( 0, 0.113281, 0.00263445, 1 )
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=4]
 script/source = "extends MeshInstance
 
 func _process(delta):
@@ -25,29 +24,59 @@ func _process(delta):
 	scale.z = proj_size.y / 2
 "
 
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 10, 50, 10 )
+[sub_resource type="GDScript" id=5]
+script/source = "extends StaticBody
 
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 10, 50, 10 )
+func _physics_process(delta):
+	var proj_size = Common.get_projection_size()
+	
+	var left_box = get_node(\"LeftBox\")
+	left_box.translation.x = -proj_size.x / 2 - 10
+	left_box.shape.extents.y = proj_size.y / 2 + 2
+	
+	var right_box = get_node(\"RightBox\")
+	right_box.translation.x = proj_size.x / 2 + 10
+	right_box.shape.extents.y = proj_size.y / 2 + 20
+	
+	var top_box = get_node(\"TopBox\")
+	top_box.translation.y = proj_size.y / 2 + 10
+	top_box.shape.extents.x = proj_size.x / 2 + 20
+	
+	var bottom_box = get_node(\"BottomBox\")
+	bottom_box.translation.y = -proj_size.y / 2 - 10
+	bottom_box.shape.extents.x = proj_size.x / 2 + 20
+"
 
 [sub_resource type="BoxShape" id=6]
-extents = Vector3( 50, 10, 10 )
+extents = Vector3( 10, 50, 10 )
 
 [sub_resource type="BoxShape" id=7]
+extents = Vector3( 10, 50, 10 )
+
+[sub_resource type="BoxShape" id=8]
 extents = Vector3( 50, 10, 10 )
 
-[sub_resource type="GDScript" id=9]
-script/source = "extends StaticBody
+[sub_resource type="BoxShape" id=9]
+extents = Vector3( 50, 10, 10 )
+
+[sub_resource type="GDScript" id=10]
+script/source = "extends Area
+
+func _ready():
+	connect(\"body_exited\", self, \"remove_object\")
 
 func _physics_process(delta):
 	var proj_size = Common.get_projection_size()
 	var shape = get_node(\"CollisionShape\").shape
 	shape.extents.x = proj_size.x / 2
 	shape.extents.y = proj_size.y / 2
+
+func remove_object(body):
+	if body.is_in_group(\"play_area_only\"):
+		body.get_parent().queue_free()
 "
 
-[sub_resource type="BoxShape" id=8]
+[sub_resource type="BoxShape" id=11]
 extents = Vector3( 1, 1, 10 )
 
 [node name="Game" type="Spatial"]
@@ -55,9 +84,10 @@ pause_mode = 1
 script = ExtResource( 4 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30 )
 projection = 1
 size = 60.0
+far = 300.0
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.320769, -0.454956, 0.830736, -0.0216948, 0.873324, 0.486656, -0.946909, -0.174127, 0.270265, 18.6813, 14.0833, -0.00863552 )
@@ -83,34 +113,34 @@ script = ExtResource( 2 )
 pause_mode = 2
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -20 )
 mesh = SubResource( 2 )
-material/0 = SubResource( 11 )
-script = SubResource( 10 )
+material/0 = SubResource( 3 )
+script = SubResource( 4 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="PlayAreaBounds" type="StaticBody" parent="."]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource( 6 )
+script = SubResource( 5 )
 
-[node name="LeftBox" type="CollisionShape" parent="StaticBody"]
+[node name="LeftBox" type="CollisionShape" parent="PlayAreaBounds"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 0 )
-shape = SubResource( 4 )
-
-[node name="RightBox" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
-shape = SubResource( 5 )
-
-[node name="TopBox" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0 )
 shape = SubResource( 6 )
 
-[node name="BottomBox" type="CollisionShape" parent="StaticBody"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0 )
+[node name="RightBox" type="CollisionShape" parent="PlayAreaBounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 0 )
 shape = SubResource( 7 )
 
-[node name="RaycastBody" type="StaticBody" parent="."]
-collision_layer = 8
-collision_mask = 8
-script = SubResource( 9 )
-
-[node name="CollisionShape" type="CollisionShape" parent="RaycastBody"]
+[node name="TopBox" type="CollisionShape" parent="PlayAreaBounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40, 0 )
 shape = SubResource( 8 )
+
+[node name="BottomBox" type="CollisionShape" parent="PlayAreaBounds"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -40, 0 )
+shape = SubResource( 9 )
+
+[node name="PlayArea" type="Area" parent="."]
+collision_layer = 12
+collision_mask = 12
+script = SubResource( 10 )
+
+[node name="CollisionShape" type="CollisionShape" parent="PlayArea"]
+shape = SubResource( 11 )

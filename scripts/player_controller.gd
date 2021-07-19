@@ -59,7 +59,7 @@ func _integrate_forces(state):
 			var direction = projected_mouse.direction_to(state.transform.origin)
 			
 			var angle = state.transform.basis.y.angle_to(direction) * sign(state.transform.basis.y.cross(direction).z)
-			state.angular_velocity.z = angle * 5
+			state.angular_velocity.z = angle * 10
 	
 	#for i in range(state.get_contact_count()):
 	#	print(state.get_contact_impulse(i))

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://sounds/music/title.ogg" type="AudioStream" id=1]
-[ext_resource path="res://scripts/asteroid_remover.gd" type="Script" id=2]
+[ext_resource path="res://scripts/object_remover.gd" type="Script" id=2]
 [ext_resource path="res://scripts/title_controller.gd" type="Script" id=3]
 [ext_resource path="res://shaders/space_background.tres" type="Shader" id=4]
 
@@ -30,7 +30,7 @@ func _process(delta):
 script = ExtResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 30 )
 projection = 1
 size = 60.0
 
