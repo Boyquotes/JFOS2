@@ -15,6 +15,12 @@ func _ready():
 	timer.connect("timeout", self, "spawn_asteroid")
 	add_child(timer)
 
+func _process(delta):
+	var dir = Vector2(cos(spawn_angle), sin(spawn_angle))
+	var material = get_node("Background").get_surface_material(0)
+	var pos = material.get_shader_param("position")
+	material.set_shader_param("position", pos + dir * 0.00005)
+
 func spawn_asteroid():
 	var proj_size = Common.get_projection_size()
 	var mid_factor = 0.75

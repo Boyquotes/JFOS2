@@ -3,7 +3,7 @@
 [ext_resource path="res://sounds/music/title.ogg" type="AudioStream" id=1]
 [ext_resource path="res://scripts/object_remover.gd" type="Script" id=2]
 [ext_resource path="res://scripts/title_controller.gd" type="Script" id=3]
-[ext_resource path="res://shaders/space_background.tres" type="Shader" id=4]
+[ext_resource path="res://shaders/star_nest.shader" type="Shader" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 1, 10 )
@@ -12,7 +12,13 @@ extents = Vector3( 1, 1, 10 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
-shader_param/BaseColor = null
+shader_param/position = Vector2( 0, 0 )
+shader_param/rotation = Vector2( 0.5, 0.8 )
+shader_param/speed = 0.01
+shader_param/direction = 30.0
+shader_param/zoom = 0.1
+shader_param/saturation = 0.85
+shader_param/tint = Color( 1, 1, 1, 1 )
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends MeshInstance
@@ -22,8 +28,8 @@ func _process(delta):
 	scale.x = proj_size.x / 2
 	scale.z = proj_size.y / 2
 	
-	var color = Color.from_hsv(fmod(OS.get_ticks_msec() / 100000.0, 1.0), 1, 0.15)
-	get_surface_material(0).set_shader_param(\"BaseColor\", color)
+	#var color = Color.from_hsv(fmod(OS.get_ticks_msec() / 100000.0, 1.0), 1, 0.15)
+	#get_surface_material(0).set_shader_param(\"BaseColor\", color)
 "
 
 [node name="Title" type="Spatial"]

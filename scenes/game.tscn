@@ -4,7 +4,7 @@
 [ext_resource path="res://scripts/music.gd" type="Script" id=2]
 [ext_resource path="res://scripts/object_remover.gd" type="Script" id=3]
 [ext_resource path="res://scripts/game_controller.gd" type="Script" id=4]
-[ext_resource path="res://shaders/space_background.tres" type="Shader" id=5]
+[ext_resource path="res://shaders/star_nest.shader" type="Shader" id=5]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 1, 1, 10 )
@@ -13,7 +13,13 @@ extents = Vector3( 1, 1, 10 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
-shader_param/BaseColor = Color( 0, 0.113281, 0.00263445, 1 )
+shader_param/position = Vector2( 0, 0 )
+shader_param/rotation = Vector2( 0.5, 0.8 )
+shader_param/speed = 0.0
+shader_param/direction = 30.0
+shader_param/zoom = 0.1
+shader_param/saturation = 0.85
+shader_param/tint = Color( 1, 1, 1, 1 )
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends MeshInstance
